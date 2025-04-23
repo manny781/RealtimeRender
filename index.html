@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Join Chat</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="login-container">
+    <h2>Enter Info to Join Chat</h2>
+    <form id="joinForm">
+      <input type="text" id="username" placeholder="Full Name" required><br>
+      <input type="number" id="age" placeholder="Age" required><br>
+      <input type="text" id="location" placeholder="Location" required><br>
+      <input type="file" id="profilePic" accept="image/*" required><br>
+      <button type="submit">Join Chat</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('joinForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const file = document.getElementById('profilePic').files[0];
+      const formData = new FormData();
+      formData.append('profilePic', file);
+
+      const uploadRes = await fetch('/upload', {
+        method: 'POST',
+        body: formData
+      });
+
+      const { imageUrl } = await uploadRes.json();
+
+      const user = {
+        name: document.getElementById('username').value,
+        age: document.getElementById('age').value,
+        location: document.getElementById('location').value,
+        profile: imageUrl
+      };
+
+      localStorage.setItem('user', JSON.stringify(user));
+      window.location.href = 'chat.html';
+    });
+  </script>
+</body>
+</html>

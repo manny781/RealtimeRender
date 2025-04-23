@@ -1,0 +1,15 @@
+[build]
+  command = "npm run build"
+  publish = "public"
+
+[[redirects]]
+  from = "/socket.io/*"
+  to = "https://your-render-app.onrender.com/socket.io/:splat"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Content-Security-Policy = "default-src 'self'; connect-src 'self' https://your-render-app.onrender.com wss://your-render-app.onrender.com"

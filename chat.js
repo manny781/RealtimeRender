@@ -1,7 +1,7 @@
 // Auto-detect environment
 const socketUrl = window.location.hostname === 'localhost' 
   ? 'http://localhost:3000' 
-  : 'https://your-render-app.onrender.com';
+  : 'https://renderChat.netlify.app';
 
 const socket = io(socketUrl, {
   reconnection: true,

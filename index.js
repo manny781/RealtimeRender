@@ -7,7 +7,7 @@ const io = require('socket.io')(http, {
     origin: [
       process.env.FRONTEND_URL,
       "http://localhost:3000",
-      "https://your-netlify-app.netlify.app"
+      "https://renderChat.netlify.app"
     ],
     methods: ["GET", "POST"],
     credentials: true
